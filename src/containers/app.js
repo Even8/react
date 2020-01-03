@@ -13,6 +13,7 @@ class App extends Component {
   state = {
   }
   componentWillMount() {
+    // redux里大方法；
     const {initalLogo} = this.props;
     initalLogo();
   }
@@ -22,13 +23,18 @@ class App extends Component {
     changeRoute();
     history.push('/docs');
   }
+  evenChange = () => {
+    const {history, changeRoute} = this.props;
+    changeRoute();
+    history.push('/even');
+  }
   render() {
     // 解构movelogo变量；
     console.log('this.props', this.props);
     const {home: {movelogo}} = this.props;
     return (
       <div className="home" style={{paddingTop: 100}}>
-        <div className={`center ${movelogo ? 'logo-move' : ''}`} onClick={this.handleBrowserChange}>
+        <div className={`center ${movelogo ? 'logo-move' : ''}`} onClick={this.evenChange}>
           <div className="logo-box">
             <img src={logo} className="logo" />
           </div>

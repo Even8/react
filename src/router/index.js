@@ -7,7 +7,7 @@ import Store from '../redux';
 import DevTools from '../redux/DevTools';
 import App from '../containers/app';
 import Docs from '../containers/docs';
-
+import Even from '../containers/even';
 // 从新封装路由组件；
 const Router = ({component: Component, children, ...rest}) => (
   <Route
@@ -24,8 +24,10 @@ const Root = () => (
       <div className="router-content">
         {__DEVELOPMENT__ && <DevTools />}
         <Switch>
+          {/* 根组件为APP */}
           <Router path="/" component={App} >
             <Router exact path="/docs" component={Docs} />
+            <Router exact path="/even" component={Even} />
           </Router>
         </Switch>
       </div>

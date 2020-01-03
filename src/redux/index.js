@@ -8,7 +8,9 @@ const enhancer = compose(
   DevTools.instrument()
 );
 
+// createStore用来生成store;
 const store = createStore(
+  // 用于生成新的store,dispatch()时，会自动调用；
   reducers,
   enhancer
 );
