@@ -4,8 +4,9 @@ import Root from './router';
 
 //globe css
 import './style/index.styl';
-import './style/less.less';
+import './style/common.less';
 import './style/sass.sass';
 import './style/scss.scss';
+import './style/animation.css';
 
 ReactDOM.render(<Root />, document.getElementById('app'));

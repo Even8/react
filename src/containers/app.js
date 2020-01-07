@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import logo from '~/assets/logo.png';
 import * as homeActions from '../redux/reduces/home';
+import Aheader from '../components/aheader';
 
 @connect(
   // 将home模块注入props里；
@@ -33,13 +34,15 @@ class App extends Component {
     console.log('this.props', this.props);
     const {home: {movelogo}} = this.props;
     return (
-      <div className="home" style={{paddingTop: 100}}>
-        <div className={`center ${movelogo ? 'logo-move' : ''}`} onClick={this.evenChange}>
+      //根元素
+      <div className="app_wrap vw_100 vh_100">
+        <Aheader/>
+        {/* <div className={`center ${movelogo ? 'logo-move' : ''}`} onClick={this.evenChange}>
           <div className="logo-box">
             <img src={logo} className="logo" />
           </div>
           <h1>React Project</h1>
-        </div>
+        </div> */}
         <div style={{width: '1000px', margin: '0 auto'}}>
           {this.props.children}
         </div>
