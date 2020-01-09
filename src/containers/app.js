@@ -31,7 +31,7 @@ class App extends Component {
   }
   render() {
     // 解构movelogo变量；
-    console.log('this.props', this.props);
+    // console.log('this.props', this.props);
     const {home: {movelogo}} = this.props;
     return (
       //根元素

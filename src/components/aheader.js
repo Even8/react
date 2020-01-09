@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import { withRouter } from 'react-router'; 
 import * as homeActions from '../redux/reduces/home';
 // 路由跳转使用
 import { Link } from 'react-router-dom';
@@ -8,34 +9,47 @@ import { Link } from 'react-router-dom';
   state => ({home: state.home}),
   dispatch => bindActionCreators(homeActions, dispatch)
 )
+// 为了解决hsitory.push 可以跳转到指定页面；
+@withRouter
 class Aheader extends Component {
-  state = {
-    list: [
-      {title:'产品服务', path: '', children: [
-        {title: '车主服务'},
-        {title: '客户运维'},
-        {title: '查勘定损'},
-        {title: '门店管理'}
-      ]},
-      {title:'行业方案', path: '', children: [
-        {title: '保险机构'},
-        {title: '银行机构'},
-        {title: '整车厂商'},
-        {title: '汽车服务商'},
-      ]},
-      {title:'一路通科技', path: '', children: [
-        {title: '人工智能'},
-        {title: '图形识别'},
-        {title: '语音识别'},
-        {title: '隐私安全'},
-      ]},
-      {title:'关于我们', path: '', children: [
-        {title: '公司介绍'},
-        {title: '合作加盟'},
-        {title: '媒体报道'},
-      ]},
-    ]
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      list: [
+        {title:'产品服务', path: 'product', children: [
+          {title: '车主服务', path: '/product'},
+          {title: '客户运维', path: '/product'},
+          {title: '查勘定损', path: '/product'},
+          {title: '门店管理', path: '/product'}
+        ]},
+        {title:'行业方案', path: 'industry', children: [
+          {title: '保险机构', path: '/industry'},
+          {title: '银行机构', path: '/industry'},
+          {title: '整车厂商', path: '/industry'},
+          {title: '汽车服务商', path: '/industry'},
+        ]},
+        {title:'一路通科技', path: 'technology', children: [
+          {title: '人工智能', path: '/technology'},
+          {title: '图形识别', path: '/technology'},
+          {title: '语音识别', path: '/technology'},
+          {title: '隐私安全', path: '/technology'},
+        ]},
+        {title:'关于我们', path: 'about', children: [
+          {title: '公司介绍', path: '/about'},
+          {title: '合作加盟', path: '/about'},
+          {title: '媒体报道', path: '/about'},
+        ]},
+      ]
+    };
+  }
+
+  clickTopath(e, listItem) {
+    let {history} = this.props;
+    history.push({
+      pathname: listItem.path,
+      state: {key: 'value'},
+    });
+  }
   render() {
     const {Documentations} = this.state;
     return (
@@ -48,9 +62,9 @@ class Aheader extends Component {
                   {item.title}
                   <div className="header-list background_black20">
                     {
-                      item.children.map((listItem, index) => {
+                      item.children.map((listItem, listIndex) => {
                         return (
-                      <div className="header-list-item flex_d_c p_y10 f-c-c my_20">{listItem.title}</div>
+                        <div key={listIndex} className="header-list-item flex_d_c p_y10 f-c-c my_20" onClick={(e) => {this.clickTopath(e,listItem)}}>{listItem.title}</div>
                         )
                       })
                     }

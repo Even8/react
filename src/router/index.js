@@ -8,6 +8,11 @@ import DevTools from '../redux/DevTools';
 import App from '../containers/app';
 import Docs from '../containers/docs';
 import Even from '../containers/even';
+import About from '../containers/about/about.js';
+import industry from '../containers/industry/industry.js';
+import product from '../containers/product/product.js';
+import technology from '../containers/technology/technology.js';
+
 // 从新封装路由组件；
 const Router = ({component: Component, children, ...rest}) => (
   <Route
@@ -28,6 +33,10 @@ const Root = () => (
           <Router path="/" component={App} >
             <Router exact path="/docs" component={Docs} />
             <Router exact path="/even" component={Even} />
+            <Router exact path="/about" component={About} />
+            <Router exact path="/technology" component={technology} />
+            <Router exact path="/industry" component={industry} />
+            <Router exact path="/product" component={product} />
           </Router>
         </Switch>
       </div>
