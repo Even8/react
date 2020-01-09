@@ -18,7 +18,10 @@ const Router = ({component: Component, children, ...rest}) => (
   <Route
     {...rest}
     render={props => (
-      <Component {...props} ><Switch>{children}</Switch></Component>
+      // key: 解决组件从新渲染问题；
+      <div key={props.location.key}>
+        <Component {...props} ><Switch>{children}</Switch></Component>
+      </div>
     )}
   />
 );
