@@ -28,7 +28,7 @@ class Product extends Component {
   render() {
     return (
       <div>
-  <div>product+ {this.state.time}</div>
+        <div>product+ {this.state.time}</div>
       </div>
     );
   }
